@@ -24,7 +24,7 @@ const {
     CONNECT_URL,
     PORT
 } = process.env
-
+mongoose.set("strictQuery", true)
 mongoose.connect(CONNECT_URL, {useNewUrlParser: true,useUnifiedTopology: true})
     .then(() => console.log('Successful connection to the database'))
     .then(()=> app.listen(PORT, () => console.log(`Connected to port: ${PORT}`)))
