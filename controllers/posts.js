@@ -14,7 +14,6 @@ export const getPosts = async (req, res) => {
 
         const posts = await postMessage.find().sort({_id: -1}).limit(LIMIT).skip(startIndex)
         
-        
         res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)});
                
     } catch (error) {   
@@ -116,9 +115,7 @@ export const likePost = async (req, res) => {
     } else {
         postLikes = post.likes.filter((id) => id !== req.userId);
     }
-    console.log(postLikes)
-    console.log(index)
-            
+                    
     const updatedPost = await postMessage.findByIdAndUpdate(id, {likes: postLikes }, {new: true});
    
     res.json(updatedPost);
